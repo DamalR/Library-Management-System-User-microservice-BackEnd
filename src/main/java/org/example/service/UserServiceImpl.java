@@ -23,4 +23,19 @@ public class UserServiceImpl implements UserService {
         UserEntity entity = mapper.map(user, UserEntity.class);
         repository.save(entity);
     }
+
+    @Override
+    public void deleteById(Long id) {
+        repository.deleteById(id);
+    }
+
+    @Override
+    public User findByUserName(String userName) {
+        return mapper.map(repository.findByUserName(userName),User.class);
+    }
+
+    @Override
+    public Boolean isExistsUser(String userName) {
+        return repository.existsByUserName(userName);
+    }
 }
